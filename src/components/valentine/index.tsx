@@ -81,13 +81,13 @@ export const Valentine = () => {
       <div className="z-50 w-[100vw] h-[100vh] flex justify-center items-center relative">
         {/* Título con fade-in y fade-out */}
         {step === 1 && (
-          <div className="flex flex-col gap-4 w-full h-full justify-center items-center relative">
+          <div className="flex flex-col gap-6 w-full h-full justify-center items-center relative">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5 }}
-              className="text-5xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center"
+              className="text-7xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script"
             >
               Feliz
             </motion.div>
@@ -96,11 +96,11 @@ export const Valentine = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5 }}
-              className="text-5xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center"
+              className="text-6xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script"
             >
               San Valentín
             </motion.div>
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -108,7 +108,7 @@ export const Valentine = () => {
               className="text-4xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center"
             >
               🌹🌹🌹
-            </motion.div>
+            </motion.div> */}
           </div>
         )}
 
@@ -120,7 +120,7 @@ export const Valentine = () => {
             transition={{ type: "spring", stiffness: 100 }}
             className="flex flex-col items-center"
           >
-            <h1 className="text-4xl font-bold text-red-600">
+            <h1 className="text-5xl font-bold text-red-600 font-cursive tracking-[0.1rem] leading-[3.85rem]">
               ¿Quieres ser mi San Valentín?
             </h1>
             <img
@@ -128,20 +128,20 @@ export const Valentine = () => {
               alt="Gatos"
               className="w-60 h-60 my-3 object-contain"
             />
-            <p className="text-2xl text-gray-700 font-bold italic text-center h-[60px]">
+            <p className="text-2xl text-gray-700 font-bold italic text-center h-[60px] font-cursive1">
               {noMessages[noIndex].text}
             </p>
             <div className="flex flex-col sm:flex-row mt-5 gap-4">
               {/* Botón Sí */}
               <button
-                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700"
+                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 font-cursive1"
                 onClick={() => setStep(3)}
               >
                 Sí
               </button>
               {/* Botón No (mensajes cíclicos) */}
               <button
-                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600"
+                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 font-cursive1"
                 onClick={() =>
                   setNoIndex((prev) => (prev + 1) % noMessages.length)
                 }
@@ -207,11 +207,10 @@ export const Valentine = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center relative z-50"
             >
-              <h2 className="text-5xl font-bold text-red-600">
+              <h2 className="text-5xl font-bold text-red-600 font-cursive tracking-[0.075rem]">
                 ¡Sabía que dirías que sí!
               </h2>
-              <h3 className="text-4xl font-bold text-red-600">❤️</h3>
-              <p className="text-2xl text-gray-700 font-bold italic mt-4">
+              <p className="text-2xl text-gray-700 font-bold italic mt-4 font-cursive1">
                 ¡Te amo, mi niña!
               </p>
               <img
