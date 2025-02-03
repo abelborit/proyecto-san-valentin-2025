@@ -40,6 +40,16 @@ export const Valentine = () => {
   const [step, setStep] = useState(0);
   const [noIndex, setNoIndex] = useState(0);
 
+  // Estados para la escala de los botones Sí y No.
+  const [yesScale, setYesScale] = useState(1);
+  const [noScale, setNoScale] = useState(1);
+
+  // Constantes para ajustar el incremento y decremento
+  const YES_SCALE_INCREMENT = 0.06; // Incrementa un 6%
+  const NO_SCALE_DECREMENT = 0.1; // Disminuye un 10%
+  const MAX_YES_SCALE = 1.65; // Límite máximo para el botón Sí
+  const MIN_NO_SCALE = 0.25; // Límite mínimo para el botón No
+
   useEffect(() => {
     const showTitle = setTimeout(() => setStep(1), 1000); // Mostrar título tras 1s
     const showInteraction = setTimeout(() => setStep(2), 4000); // Luego de 3s más
@@ -120,25 +130,36 @@ export const Valentine = () => {
             <img
               src={noMessages[noIndex].gif}
               alt="Gatos"
-              className="w-60 h-60 my-3 object-contain"
+              className="w-52 h-52 my-3 object-contain"
             />
             <p className="text-2xl text-gray-700 font-bold italic text-center h-[60px] font-cursive1">
               {noMessages[noIndex].text}
             </p>
             <div className="flex flex-col sm:flex-row mt-5 gap-4">
-              {/* Botón Sí */}
+              {/* Botón Sí: se escala según el estado yesScale */}
               <button
-                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 font-cursive1"
+                style={{ transform: `scale(${yesScale})` }}
+                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 font-cursive1 transition-transform duration-200"
                 onClick={() => setStep(3)}
               >
                 Sí
               </button>
-              {/* Botón No (mensajes cíclicos) */}
+
+              {/* Botón No (mensajes cíclicos): se escala según el estado noScale */}
               <button
-                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 font-cursive1"
-                onClick={() =>
-                  setNoIndex((prev) => (prev + 1) % noMessages.length)
-                }
+                style={{ transform: `scale(${noScale})` }}
+                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 font-cursive1 transition-transform duration-200"
+                onClick={() => {
+                  setNoIndex((prev) => (prev + 1) % noMessages.length);
+                  // Incrementa la escala del botón Sí, pero sin exceder el máximo.
+                  setYesScale((prev) =>
+                    Math.min(prev + YES_SCALE_INCREMENT, MAX_YES_SCALE)
+                  );
+                  // Disminuye la escala del botón No, pero sin bajar del mínimo.
+                  setNoScale((prev) =>
+                    Math.max(prev - NO_SCALE_DECREMENT, MIN_NO_SCALE)
+                  );
+                }}
               >
                 No
               </button>
