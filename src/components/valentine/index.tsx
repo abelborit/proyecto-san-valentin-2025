@@ -13,7 +13,7 @@ import {
 
 const noMessages = [
   { id: 1, text: "¡Vamos, será bonito!", gif: pregunta_inicial },
-  { id: 2, text: "¡Atrévete, confía en mi!", gif: respuesta_no_1 },
+  { id: 2, text: "¡Atrévete, confía en mí!", gif: respuesta_no_1 },
   { id: 3, text: "¡Un sí a la vida y a la risa!", gif: respuesta_no_2 },
   { id: 4, text: "¡Un poco de amor nunca sobra!", gif: respuesta_no_3 },
   { id: 5, text: "¡No te quedes con la duda!", gif: respuesta_no_4 },
@@ -29,6 +29,12 @@ const confettiColors = [
   "#00FF00",
   "#FF69B4",
 ];
+
+const fadeVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
 export const Valentine = () => {
   const [step, setStep] = useState(0);
@@ -81,35 +87,23 @@ export const Valentine = () => {
       <div className="z-50 w-[100vw] h-[100vh] flex justify-center items-center relative">
         {/* Título con fade-in y fade-out */}
         {step === 1 && (
-          <div className="flex flex-col gap-6 w-full h-full justify-center items-center relative">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="text-7xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script"
-            >
+          <motion.div
+            key="title"
+            variants={fadeVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="flex flex-col gap-6 w-full h-full justify-center items-center relative"
+          >
+            <div className="text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script">
               Feliz
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="text-6xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script"
-            >
+            </div>
+
+            <div className="text-6xl font-bold text-red-600 drop-shadow-lg text-center font-script">
               San Valentín
-            </motion.div>
-            {/* <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="text-4xl md:text-4xl lg:text-7xl font-bold text-red-600 drop-shadow-lg text-center"
-            >
-              🌹🌹🌹
-            </motion.div> */}
-          </div>
+            </div>
+          </motion.div>
         )}
 
         {/* Pregunta y botones */}
