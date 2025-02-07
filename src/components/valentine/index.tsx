@@ -65,7 +65,7 @@ export const Valentine = () => {
     Math.random() * (max - min) + min;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-200 text-center relative overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-200 text-center relative overflow-hidden px-4">
       {/* Fondo: Corazones flotantes */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
         {[...Array(120)].map((_, i) => (
@@ -222,7 +222,7 @@ export const Valentine = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center relative z-50"
             >
-              <h2 className="text-5xl font-bold text-red-600 font-cursive tracking-[0.075rem]">
+              <h2 className="text-5xl font-bold text-red-600 font-cursive tracking-[0.075rem] px-2">
                 ¡Sabía que dirías que sí!
               </h2>
               <p className="text-2xl text-gray-700 font-bold italic mt-4 font-cursive1">
