@@ -6,7 +6,7 @@ export default {
       fontFamily: {
         // sans: ['Montserrat', 'sans-serif'],
         cursive: ["Great Vibes", "cursive"],
-        cursive1: ["cursive"],
+        cursive1: ["Montserrat", "cursive"],
         script: ["Dancing Script", "cursive"],
       },
     },
