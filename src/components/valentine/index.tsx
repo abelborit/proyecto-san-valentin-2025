@@ -132,14 +132,14 @@ export const Valentine = () => {
               alt="Gatos"
               className="w-52 h-52 my-3 object-contain"
             />
-            <p className="text-2xl text-gray-700 font-bold italic text-center h-[60px] font-cursive1">
+            <p className="text-2xl text-gray-700 font-bold text-center h-[60px] font-cursive1 italic">
               {noMessages[noIndex].text}
             </p>
             <div className="flex flex-col sm:flex-row mt-5 gap-4">
               {/* Botón Sí: se escala según el estado yesScale */}
               <button
                 style={{ transform: `scale(${yesScale})` }}
-                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 font-cursive1 transition-transform duration-200"
+                className="w-[180px] py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 font-cursive1 italic transition-transform duration-200"
                 onClick={() => setStep(3)}
               >
                 Sí
@@ -148,7 +148,7 @@ export const Valentine = () => {
               {/* Botón No (mensajes cíclicos): se escala según el estado noScale */}
               <button
                 style={{ transform: `scale(${noScale})` }}
-                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 font-cursive1 transition-transform duration-200"
+                className="w-[180px] py-3 bg-red-400 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 font-cursive1 italic transition-transform duration-200"
                 onClick={() => {
                   setNoIndex((prev) => (prev + 1) % noMessages.length);
                   // Incrementa la escala del botón Sí, pero sin exceder el máximo.
