@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Clona el repositorio completo (fetch-depth: 0 es necesario para poder hacer push a otra rama)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # 2. Configura Node.js (ajusta la versión según tus necesidades)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # 3. Instala las dependencias de forma manual (sin usar acciones de terceros)
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Realiza el build de tu aplicación
+      - name: Build project
+        run: npm run build
+
+      # 5. Despliega la carpeta de salida a la rama gh-pages de forma manual
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configura git para que el commit se realice con un usuario genérico de GitHub Actions.
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+          # Intenta obtener la rama gh-pages (si existe) para actualizarla;
+          # en caso contrario, se crea una nueva rama huérfana.
+          git fetch origin gh-pages || true
+          if git rev-parse --verify gh-pages; then
+            git checkout gh-pages
+          else
+            git checkout --orphan gh-pages
+          fi
+
+          # Elimina todos los archivos (dejando intacto el directorio .git)
+          git rm -rf .
+
+          # Copia el contenido de la carpeta de build (dist) a la raíz del repositorio.
+          cp -R dist/* .
+
+          # Agrega y comitea los cambios.
+          git add .
+          git commit -m "Deploy to GitHub Pages" || echo "No changes to commit"
+
+          # Fuerza el push de la rama gh-pages a GitHub.
+          git push origin gh-pages --force
