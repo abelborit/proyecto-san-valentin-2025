@@ -45,10 +45,10 @@ export const Valentine = () => {
   const [noScale, setNoScale] = useState(1);
 
   // Constantes para ajustar el incremento y decremento
-  const YES_SCALE_INCREMENT = 0.06; // Incrementa un 6%
-  const NO_SCALE_DECREMENT = 0.1; // Disminuye un 10%
-  const MAX_YES_SCALE = 1.65; // Límite máximo para el botón Sí
-  const MIN_NO_SCALE = 0.25; // Límite mínimo para el botón No
+  const YES_SCALE_INCREMENT = 0.075; // Incrementa un 7.5%
+  const NO_SCALE_DECREMENT = 0.15; // Disminuye un 15%
+  const MAX_YES_SCALE = 1.5; // Límite máximo para el botón Sí
+  const MIN_NO_SCALE = 0.2; // Límite mínimo para el botón No
 
   useEffect(() => {
     const showTitle = setTimeout(() => setStep(1), 1000); // Mostrar título tras 1s
@@ -103,16 +103,20 @@ export const Valentine = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="flex flex-col gap-6 w-full h-full justify-center items-center relative"
+            transition={{ duration: 1.65, ease: "easeInOut" }}
+            className="flex flex-col gap-3 w-full h-full justify-center items-center relative"
           >
-            <div className="text-7xl font-bold text-red-600 drop-shadow-lg text-center font-script">
+            <p className="text-[5.5rem] font-bold text-red-600 drop-shadow-lg text-center font-script -mb-6">
               Feliz
-            </div>
+            </p>
 
-            <div className="text-6xl font-bold text-red-600 drop-shadow-lg text-center font-script">
+            <p className="text-[4rem] font-bold text-red-600 drop-shadow-lg text-center font-script">
               San Valentín
-            </div>
+            </p>
+
+            <p className="text-4xl font-bold text-red-800 drop-shadow-lg text-center font-script">
+              - Mi niña -
+            </p>
           </motion.div>
         )}
 
