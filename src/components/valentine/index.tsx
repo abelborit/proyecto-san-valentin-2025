@@ -231,8 +231,14 @@ export const Valentine = () => {
               <img
                 src={respuesta_si}
                 alt="Gatos enamorados felices"
-                className="w-64 h-64 -mt-[30px] mb-4"
+                className="w-64 h-64 -mt-[30px]"
               />
+              <p className="text-lg text-gray-700 font-bold font-script tracking-wider">
+                VSCM - AEBG
+              </p>
+              <p className="text-sm text-gray-700 font-bold font-script mt-[1px]">
+                14 - 02 - 2025
+              </p>
             </motion.div>
           </>
         )}
